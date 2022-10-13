@@ -572,3 +572,27 @@ SELECT * FROM EMP
 where DEPTNO=30 OR MGR='7782';
 
 select * from emp;
+
+---------------------------------------------------------------
+SELET v.vno , v.title e, c.name d, s.tel cc, r.bw_date + 3 b, '¹Ì³³'a
+FROM customer c join rental r on c.tel = r.tel
+join video v on v.vno = r.vno
+and r.status = 'N';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
