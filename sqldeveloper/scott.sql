@@ -578,8 +578,38 @@ SELET v.vno , v.title e, c.name d, s.tel cc, r.bw_date + 3 b, '미납'a
 FROM customer c join rental r on c.tel = r.tel
 join video v on v.vno = r.vno
 and r.status = 'N';
+----------------------------------------------------------------
+CREATE TABLE account
+(
+account_num  varchar2(20),
+customer     varchar2(20),
+amount       number
+);
+
+INSERT INTO account( account_num, customer, amount ) 
+VALUES ('홍길동','111-11-1111',10000);
+
+INSERT INTO account( account_num, customer, amount ) 
+VALUES ('맹자', '999-99-9999', 5000);
+
+commit;
+
+--1)업무별 평균월급
+SELECT round(avg(sal)) 평균월급, nvl(job, '미정')업무
+FROM emp
+GROUP BY job;
+
+--2) 월급을 많이 받은 10명
+SELECT       ename, nvl(sal, 0)
+FROM        (SELECT ename, nvl(sal, 0) sal FROM emp ORDER BY SAL desc)
+WHERE       rownum < 11;
 
 
+
+--3) 월별 입사한 인원수
+SELECT TO_CHAR(HIRE_DATE, 'MM')||'월' 입사달, COUNT(*)||' 명' AS 직원수 
+FROM emp BY TO_CHAR(HIRE_DATE, 'MM')
+ORDER BY TO_CHAR(HIRE_DATE, 'MM');SELECT * FROM emp;
 
 
 
